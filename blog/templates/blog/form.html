@@ -1,0 +1,38 @@
+  
+{% extends 'blog/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <h2 style="padding:5px; color: #505050; font-size: large;">Add a new team member</h1>
+    <h3 style="padding:5px; color: lightgrey; font-size: small;" > Set email, location and role</h2>
+</div>
+
+<hr style="width: 90%;">
+
+    <div class="card-body">
+        <h3 style="font-size: medium;"> Info </h3>
+        
+    
+                        <form method="post" action="/user/new_register">
+                            {% csrf_token %}
+                            <input type="hidden" value={{user.id}} name="user_id" />
+                            {% if "same" in error %}
+                                <h5 style="color: red;">user with same email exists</h5>
+                            {% endif %}
+                            {% if error %}
+                                <h5 style="color: red;"> Please enter correct details </h5>
+                            {% endif %}
+                            {{ form.as_p }}  
+                            
+                                <input style="margin-top:10px ;" class="button" type="submit" value="Register">
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+              
+        </div>
+    </div>
+    
+{% endblock content %}

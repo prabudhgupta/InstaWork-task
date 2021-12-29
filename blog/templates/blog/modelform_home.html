@@ -1,0 +1,41 @@
+{% extends 'blog/main.html' %}
+{% block content %}
+
+<div class="header-bar">
+    <div id="containerIntro">
+    <h2 style="padding:5px; color: #505050; font-size: large;">Team Members</h1> 
+
+    <a href="{% url 'form_register' %}"> <img src="/static/plus1.png" style="width: 10%; height: 10%; padding-left: 20%; padding-top: 5%;"></a>
+    </div>  
+    <h3 style="padding:5px; color: lightgrey; font-size: small;" > You have {{count}} members</h2>
+</div>
+
+<hr style="width: 90%;">
+
+{% for user in users %}
+        <div class="side">
+
+            <img class = img-class src="/static/new1_preview_rev_1.png" >
+            
+
+            <p style="font-size: small; font-family: 'Trebuchet MS', sans-serif;" >
+                {% if 'A' == user.role %}
+                    {{user.first_name}}
+                    {{user.last_name}} (admin)
+                {% else %}
+                    {{user.first_name}}
+                    {{user.last_name}}
+                {% endif %}
+
+                </br>
+                <h10 style="font-size:x-small; color: #A9A9A9;">{{user.email}}</h10>
+                </br>
+                <h10 style="font-size:x-small; color: #A9A9A9;">{{user.number}}</h10>
+                </br>
+                <a href="{% url 'form_edit' user.id %}"><img src="/static/edit2.png" style="width: 10%; height: 10%;"></a>
+            </p>  
+
+        </div>
+        <hr style="width: 90%;">
+{% endfor %}
+{% endblock content %}
